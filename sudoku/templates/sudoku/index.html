@@ -5,5 +5,15 @@
 <div class="jumbotron">
   <h1>Sudoku Solver</h1>
   {% lorem 1p %}
+  <br>
+  {{ question }}
+  <br>
+  <form action="{% url 'sudoku:index' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit" />
+  </form>
 </div>
+
+
 {% endblock content %}
