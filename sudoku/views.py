@@ -82,10 +82,13 @@ def handle_uploaded_file(f):
 def load_board_from_session(board):
     ret = []
     if board != None:
-        for i in range(len(board)):
-            ret.append([])
-            for j in range(len(board)):
-                ret[i].append(board[i][j])
+        try:
+            for i in range(len(board)):
+                ret.append([])
+                for j in range(len(board)):
+                    ret[i].append(board[i][j])
+        except TypeError:
+            return -1
     else:
         ret = None
     #data['solution'] = request.session['solution']
