@@ -29,9 +29,9 @@ def index(request):
             # redirect to a new URL:
             #data = { 'form': NameForm(),
                      #'data': form.cleaned_data['your_name'] }
-             #handle_uploaded_file(request.FILES['file'])
+            solution = handle_uploaded_file(request.FILES['file'])
 
-            return HttpResponseRedirect('/', {'form': UploadFileForm()})
+            return HttpResponseRedirect('/')
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -46,7 +46,8 @@ def handle_uploaded_file(f):
     for row in reader:
         board.append(map(int, row))
 
-    solution = soduku.solveSudoku(board)
+    solution = sudoku.solveSudoku(board)
+    return solution
     #with open('some/file/name.txt', 'wb+') as destination:
     #    for chunk in f.chunks():
     #        destination.write(chunk)

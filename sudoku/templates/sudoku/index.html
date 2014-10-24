@@ -1,22 +1,8 @@
 {% extends "base.html" %}
-{% load webdesign %}
 
 {% block content %}
-<div class="jumbotron">
-  <h1>Sudoku Solver</h1>
-  {% lorem 1p %}
-  <br>
-  {{ question }}
-  <br>
-  <form enctype="multipart/form-data" action="{% url 'sudoku:index' %}" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit" />
-  </form>
-</div>
 
-{% if data %}
-  {{ data }}
-{% endif %}
+
+{{ solution }}
 
 {% endblock content %}
