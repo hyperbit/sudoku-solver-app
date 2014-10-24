@@ -4,7 +4,9 @@
 
 
 {% if solution %}
-  {{ solution }}
+  {% for row in solution %}
+    {{ row }}
+  {% endfor %}
 {% endif %}
 
 
