@@ -6,5 +6,5 @@ urlpatterns = patterns('',
     # url(r'^$', 'sudoku_solver.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^$', include('sudoku.urls',name='index')),
+    url(r'^$', include('sudoku.urls')),
 )
