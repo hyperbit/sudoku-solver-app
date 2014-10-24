@@ -8,7 +8,7 @@
   <br>
   {{ question }}
   <br>
-  <form action="{% url 'sudoku:index' %}" method="post">
+  <form enctype="multipart/form-data" action="{% url 'sudoku:index' %}" method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit" />
