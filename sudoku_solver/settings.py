@@ -66,6 +66,17 @@ DATABASES = {
     }
 }
 
+# Cache
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-sudoku',
+        'TIMEOUT': 60,
+    }
+}
+
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
