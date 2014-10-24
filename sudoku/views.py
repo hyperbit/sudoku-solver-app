@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404, render
 from django import forms
 
 import sudoku
+import csv
 
 class UploadFileForm(forms.Form):
     file = forms.FileField()
@@ -40,6 +41,12 @@ def index(request):
 
 # Helper method
 def handle_uploaded_file(f):
-    with open('some/file/name.txt', 'wb+') as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)
+    board = []
+    reader = csv.reader(f)
+    for row in reader:
+        board.append(map(int, row))
+
+    solution = soduku.solveSudoku(board)
+    #with open('some/file/name.txt', 'wb+') as destination:
+    #    for chunk in f.chunks():
+    #        destination.write(chunk)
