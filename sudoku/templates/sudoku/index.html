@@ -3,12 +3,23 @@
 {% block content %}
 
 
-{% if solution and solution != -1 %}
-  {% for row in solution %}
-    {{ row }}
-    <br>
-  {% endfor %}
-{% endif %}
+<div class="col-md-3">
+  {% if board and board != -1 %}
+    {% for row in board %}
+      {{ row }}
+      <br>
+    {% endfor %}
+  {% endif %}
+</div>
+
+<div class="col-md-3">
+  {% if solution and solution != -1 %}
+    {% for row in solution %}
+      {{ row }}
+      <br>
+    {% endfor %}
+  {% endif %}
+</div>
 
 
 {% endblock content %}

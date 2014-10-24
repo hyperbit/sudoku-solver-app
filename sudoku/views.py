@@ -29,8 +29,9 @@ def index(request):
             # redirect to a new URL:
             #data = { 'form': NameForm(),
                      #'data': form.cleaned_data['your_name'] }
-            solution = handle_uploaded_file(request.FILES['file'])
+            board, solution = handle_uploaded_file(request.FILES['file'])
             request.session['solution'] = solution
+            request.session['board'] = board
 
             return HttpResponseRedirect('/')
 
@@ -41,19 +42,16 @@ def index(request):
         data = {}
         data['form'] = form
         data['solution'] = None
+        data['board'] = None
 
         try:
-            if request.session['solution'] != None:
-                data['solution'] = []
-                for i in range(len(request.session['solution'])):
-                    data['solution'].append([])
-                    for j in range(len(request.session['solution'])):
-                        data['solution'][i].append(request.session['solution'][i][j])
-            else:
-                data['solution'] = None
-            #data['solution'] = request.session['solution']
+            data['solution'] = load_board_from_session(request.session['solution'])
         except KeyError, TypeError:
             data['solution'] = -1
+        try:
+            data['board'] = load_board_from_session(request.session['board'])
+        except KeyError, TypeError:
+            data['board'] = -1
 
         request.session['solution'] = None
 
@@ -62,20 +60,33 @@ def index(request):
 
     return render(request, 'sudoku/index.html', data)
 
-# Helper method
+# Helper methods
 def handle_uploaded_file(f):
 
-    board = []
+    board, solution = [],[]
     reader = csv.reader(f)
 
     for row in reader:
         try:
             board.append(map(int, row))
+            solution.append(map(int, row))
         except ValueError:
-            return -1
+            return (-1, -1)
 
-    solution = sudoku.solveSudoku(board)
-    return solution
+    sudoku.solveSudoku(solution)
+    return board, solution
     #with open('some/file/name.txt', 'wb+') as destination:
     #    for chunk in f.chunks():
     #        destination.write(chunk)
+
+def load_board_from_session(board):
+    ret = []
+    if board != None:
+        for i in range(len(board)):
+            ret.append([])
+            for j in range(len(board)):
+                ret[i].append(board[i][j])
+    else:
+        ret = None
+    #data['solution'] = request.session['solution']
+    return ret
