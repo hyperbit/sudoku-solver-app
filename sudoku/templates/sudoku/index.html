@@ -3,8 +3,11 @@
 {% block content %}
 
 
-{% if solution %}
-  {{ solution }}
+{% if solution and solution != -1 %}
+  {% for row in solution %}
+    {{ row }}
+    <br>
+  {% endfor %}
 {% endif %}
 
 

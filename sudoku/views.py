@@ -40,9 +40,19 @@ def index(request):
 
         data = {}
         data['form'] = form
+        data['solution'] = None
+
         try:
-            data['solution'] = request.session['solution']
-        except KeyError:
+            if request.session['solution'] != None:
+                data['solution'] = []
+                for i in range(len(request.session['solution'])):
+                    data['solution'].append([])
+                    for j in range(len(request.session['solution'])):
+                        data['solution'][i].append(request.session['solution'][i][j])
+            else:
+                data['solution'] = None
+            #data['solution'] = request.session['solution']
+        except KeyError, TypeError:
             data['solution'] = -1
 
         request.session['solution'] = None
