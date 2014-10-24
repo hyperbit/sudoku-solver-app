@@ -3,6 +3,9 @@
 {% block content %}
 
 
-{{ solution }}
+{% if solution %}
+  {{ solution }}
+{% endif %}
+
 
 {% endblock content %}

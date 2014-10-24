@@ -38,13 +38,15 @@ def index(request):
     else:
         form = UploadFileForm()
 
-    data = {}
-    data['form'] = form
-    if request.session['solution']:
-        data['solution'] = request.session['solution']
-        data['solution'] = None
+        data = {}
+        data['form'] = form
+        try:
+            data['solution'] = request.session['solution']
+            request.session['solution'] = None
+        except KeyError:
+            data['solution'] = -1
 
-    return render(request, 'sudoku/index.html', {'form': form})
+    return render(request, 'sudoku/index.html', data)
 
 # Helper method
 def handle_uploaded_file(f):
