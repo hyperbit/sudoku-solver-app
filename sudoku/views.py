@@ -21,7 +21,9 @@ def index(request):
             # process the data in form.cleaned_data as required
             # ...
             # redirect to a new URL:
-            return render(request, 'sudoku/index.html', {'form': form})
+            data = { 'form': NameForm(),
+                     'data': form.cleaned_data['your_name']}
+            return render(request, 'sudoku/index.html', data)
 
     # if a GET (or any other method) we'll create a blank form
     else:
