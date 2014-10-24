@@ -37,7 +37,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'sudoku'
+    'django.contrib.webdesign',
+    'sudoku',
 )
 
 MIDDLEWARE_CLASSES = (
