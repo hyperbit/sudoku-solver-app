@@ -30,12 +30,19 @@ def index(request):
             #data = { 'form': NameForm(),
                      #'data': form.cleaned_data['your_name'] }
             solution = handle_uploaded_file(request.FILES['file'])
+            request.session['solution'] = solution
 
             return HttpResponseRedirect('/')
 
     # if a GET (or any other method) we'll create a blank form
     else:
         form = UploadFileForm()
+
+    data = {}
+    data['form'] = form
+    if request.session['solution']:
+        data['solution'] = request.session['solution']
+        data['solution'] = None
 
     return render(request, 'sudoku/index.html', {'form': form})
 
