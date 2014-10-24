@@ -33,6 +33,10 @@
   </nav>
 
 
+  {% if error %}
+    <div class="alert alert-danger" role="alert">{{ error }}</div>
+  {% endif %}
+  
   <div class="container" style="padding-top:20px;">
 
     <!-- Jumbotron -->

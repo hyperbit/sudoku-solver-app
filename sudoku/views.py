@@ -8,7 +8,7 @@ import sudoku
 import csv
 
 class UploadFileForm(forms.Form):
-    file = forms.FileField()
+    file = forms.FileField(widget=forms.FileInput(attrs={'accept':'.csv'}))
 
 class NameForm(forms.Form):
     your_name = forms.CharField(label='Your name', max_length=100)
@@ -42,18 +42,27 @@ def index(request):
         data['form'] = form
         try:
             data['solution'] = request.session['solution']
-            request.session['solution'] = None
         except KeyError:
             data['solution'] = -1
+
+        request.session['solution'] = None
+
+        if data['solution'] == -1:
+            data['error'] = "Oh no! Something was wrong with your input :("
 
     return render(request, 'sudoku/index.html', data)
 
 # Helper method
 def handle_uploaded_file(f):
+
     board = []
     reader = csv.reader(f)
+
     for row in reader:
-        board.append(map(int, row))
+        try:
+            board.append(map(int, row))
+        except ValueError:
+            return -1
 
     solution = sudoku.solveSudoku(board)
     return solution
