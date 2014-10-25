@@ -7,29 +7,22 @@
 {% if board and board != -1 %}
 <div class="row">
   <div class="col-md-12">
+
+
     <div class="sudoku-board col-md-6">
-
-
-        {% for row in board %}
-          {% if forloop.counter|divisibleby:"3" %}
-            {% if forloop.counter == 9 %}
-              <div class="row">
-            {% else %}
-              <div class="row" style="border-bottom: solid black 1px;">
-            {% endif %}
-          {% else %}
-            <div class="row">
-          {% endif %}
-              {% for i in row %}
-                  <div class="sudoku-cell col-md-4 cell-{{ forloop.counter }}">
-                    {{ i }}
-                  </div>
-              {% endfor %}
+      {% for row in board %}
+        <div class="row row-{{ forloop.counter }}">
+          {% for i in row %}
+            <div class="sudoku-cell col-md-4 cell-{{ forloop.counter }}">
+              {{ i }}
             </div>
+          {% endfor %}
+          </div>
         {% endfor %}
+      </div>
 
 
-    </div>
+
   </div>
 </div>
 {% endif %}
