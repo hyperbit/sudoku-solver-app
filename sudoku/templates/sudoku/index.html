@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load my_templates %}
+
 {% block content %}
 
 
@@ -45,8 +47,8 @@
 
 <div class="col-md-3">
   {% if solution and solution != -1 %}
-    {% for key, value in solution %}
-      {{ board.key }}
+    {% for i in 3|get_range %}
+      {{ i }}
       <br>
     {% endfor %}
   {% endif %}
