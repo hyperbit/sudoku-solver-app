@@ -13,13 +13,26 @@
       {% for row in board %}
         <div class="row row-{{ forloop.counter }}">
           {% for i in row %}
-            <div class="sudoku-cell col-md-4 cell-{{ forloop.counter }}">
+            <div class="sudoku-cell col-md-4 cell-{{ forloop.counter }} val-{{ i }}">
               {{ i }}
             </div>
           {% endfor %}
-          </div>
-        {% endfor %}
-      </div>
+        </div>
+      {% endfor %}
+    </div>
+
+
+    <div class="sudoku-board col-md-6">
+      {% for row in solution %}
+        <div class="row row-{{ forloop.counter }}">
+          {% for i in row %}
+            <div class="sudoku-cell col-md-4 cell-{{ forloop.counter }} val-{{ i }}">
+              {{ i }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
 
 
 
@@ -32,11 +45,9 @@
 
 <div class="col-md-3">
   {% if solution and solution != -1 %}
-    {% for row in solution %}
-      {% for c in row %}
-        {{ c }}
+    {% for key, value in solution %}
+      {{ board.key }}
       <br>
-      {% endfor %}
     {% endfor %}
   {% endif %}
 </div>
