@@ -47,11 +47,12 @@ def index(request):
         try:
             data['solution'] = load_board_from_session(request.session['solution'])
         except KeyError, TypeError:
-            data['solution'] = -1
+            data['solution'] = None
+
         try:
             data['board'] = load_board_from_session(request.session['board'])
         except KeyError, TypeError:
-            data['board'] = -1
+            data['board'] = None
 
         request.session['solution'] = None
 
