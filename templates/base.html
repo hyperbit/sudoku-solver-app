@@ -36,16 +36,31 @@
   {% if error %}
     <div class="alert alert-danger" role="alert">{{ error }}</div>
   {% endif %}
-  
+
   <div class="container" style="padding-top:20px;">
 
     <!-- Jumbotron -->
     <div class="jumbotron">
-      <h1>Sudoku Solver</h1>
-      {% lorem 1p %}
-      <br>
-      {{ question }}
-      <br>
+      <div class="col-md-8">
+        <h1>Sudoku Solver</h1>
+        <p>
+          This is a simple text-based <a href="http://www.sudoku.name/rules/en">Sudoku</a> solver. It takes in a Sudoku board in CSV format as its input - the CSV file should be a 9x9 comma separated integer grid, with each integer between 0-9 (0 represents blanks). An example of an appropriate input is shown:
+        </p>
+      </div>
+      <div class="col-md-4">
+        <strong>sample_input.csv</strong>
+        <p>
+          0,3,5,2,9,0,8,6,4<br>
+          0,8,2,4,1,0,7,0,3<br>
+          7,6,4,3,8,0,0,9,0<br>
+          2,1,8,7,3,9,0,4,0<br>
+          0,0,0,8,0,4,2,3,0<br>
+          0,4,3,0,5,2,9,7,0<br>
+          4,0,6,5,7,1,0,0,9<br>
+          3,5,9,0,2,8,4,1,7<br>
+          8,0,0,9,0,0,5,2,6<br>
+        </p>
+      </div>
       <form enctype="multipart/form-data" action="{% url 'sudoku:index' %}" method="post">
         {% csrf_token %}
         {{ form }}
