@@ -39,6 +39,7 @@ def index(request):
         form = UploadFileForm()
 
         data = {}
+        data['title'] = 'Home'
         data['form'] = form
         data['solution'] = None
         data['board'] = None
@@ -59,6 +60,9 @@ def index(request):
             data['error'] = "Oh no! Something was wrong with your input :("
 
     return render(request, 'sudoku/index.html', data)
+
+def about(request):
+    return render(request, 'sudoku/about.html', {'title':'About'})
 
 # Helper methods
 def handle_uploaded_file(f):
