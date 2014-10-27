@@ -26,6 +26,7 @@ a {
 }
 
 .sudoku {
+  color: #F0ECE1;
   border-radius: 5px;
   border: #4A473A solid 2px;
   background-color: #4A473A;
