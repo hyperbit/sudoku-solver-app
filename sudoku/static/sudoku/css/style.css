@@ -30,6 +30,7 @@ a {
   border: #4A473A solid 2px;
   background-color: #4A473A;
   padding: 5px;
+  margin-bottom: 20px;
 }
 
 .sudoku-board {
