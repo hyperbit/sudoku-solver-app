@@ -9,4 +9,5 @@ urlpatterns = patterns('',
     url(r'^$', include('sudoku.urls', namespace="sudoku")),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^about/', include('sudoku.urls', namespace="sudoku")),
+    url(r'^contact/', include('sudoku.urls', namespace="sudoku")),
 )

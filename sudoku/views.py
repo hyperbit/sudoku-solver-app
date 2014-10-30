@@ -64,6 +64,9 @@ def index(request):
 def about(request):
     return render(request, 'sudoku/about.html', {'title':'About'})
 
+def contact(request):
+    return render(request, 'sudoku/contact.html', {'title':'Contact'})
+
 # Helper methods
 def handle_uploaded_file(f):
 
